@@ -32,7 +32,8 @@ public class InquiryAccountController {
 		log.info("Res --> " + inquiryAccount.toStringJson());
 
 		
-		log.info("======================START [END ACCOUNT]======================================");
+		log.info("======================END [INQUIRY ACCOUNT]======================================");
+		log.info("\n\n");
 
 		return ResponseEntity.status(200).body(inquiryAccount);
 	}
