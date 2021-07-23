@@ -26,6 +26,10 @@ public class InquiryAccountService {
 
 		// =========query to database===========
 		List<InquiryAccountInfo> accountInfo = get_inquiry_data.getAccountInfo(req.getBVRequest().getAccNo());
+		
+		if(accountInfo.size()==0) {
+			throw new RuntimeException("No Data Found");
+		}
 		// =====================================
 		
 		//============mapping response data=====
@@ -54,7 +58,7 @@ public class InquiryAccountService {
 		log.info("get accountInfo -- " + inq_data.toStringJson());
 
 		b.setAccNo(inq_data.getDMACCT()).setBranchNo(inq_data.getDMBRN())
-			.setAccName(inq_data.getDMSNAM()).setAccStatus(inq_data.getDMSTAT())
+			.setAccName(inq_data.getDMSNAM().trim()).setAccStatus(inq_data.getDMSTAT())
 				.setAvailableBalance(inq_data.getDMBLAV()).setLedgerBalance(inq_data.getDMBLPB());
 			
 		res.setBVResponse(b);
